@@ -1,0 +1,90 @@
+object ChangeMotorNameForm: TChangeMotorNameForm
+  Left = 573
+  Top = 168
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = #20462#25913#30005#26426#21517#31216
+  ClientHeight = 160
+  ClientWidth = 226
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Scaled = False
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzPanel1: TRzPanel
+    Left = 0
+    Top = 0
+    Width = 226
+    Height = 160
+    BorderOuter = fsNone
+    TabOrder = 0
+    object RzLabel1: TRzLabel
+      Left = 0
+      Top = 24
+      Width = 64
+      Height = 20
+      Caption = #21407#21517#23383#65306
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object RzLabel2: TRzLabel
+      Left = 0
+      Top = 64
+      Width = 64
+      Height = 20
+      Caption = #26032#21517#23383#65306
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object BeforeName: TRzLabel
+      Left = 88
+      Top = 24
+      Width = 90
+      Height = 20
+      AutoSize = False
+      Caption = 'BeforeName'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      ShadowDepth = 0
+    end
+    object NewName: TRzEdit
+      Left = 80
+      Top = 64
+      Width = 121
+      Height = 21
+      TabOrder = 0
+    end
+    object RzBitBtn1: TRzBitBtn
+      Left = 80
+      Top = 128
+      Caption = #30830#23450#20462#25913
+      TabOrder = 1
+      OnClick = RzBitBtn1Click
+    end
+    object RzBitBtn2: TRzBitBtn
+      Left = 136
+      Top = 120
+      Caption = #21462#28040#20462#25913
+      TabOrder = 2
+      OnClick = RzBitBtn2Click
+    end
+  end
+end
