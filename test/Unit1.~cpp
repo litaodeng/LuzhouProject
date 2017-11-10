@@ -1217,3 +1217,22 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
 }
 //---------------------------------------------------------------------------
 
+
+
+void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key,
+      TShiftState Shift)
+{
+    if(Key==27){
+        MainForm->Close();
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::Image5Click(TObject *Sender)
+{
+
+    MainForm->Close();    
+}
+//---------------------------------------------------------------------------
+
+

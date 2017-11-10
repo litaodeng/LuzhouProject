@@ -130,6 +130,8 @@ __published:	// IDE-managed Components
     TRzButton *Loginout;
     TRzButton *LoginButton;
     TRzLabel *RzLabel21;
+    TRzLabel *RzLabel13;
+    TImage *Image5;
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall Timer2Timer(TObject *Sender);
     void __fastcall Button2Click(TObject *Sender);
@@ -182,6 +184,9 @@ __published:	// IDE-managed Components
     void __fastcall ComboBox1KeyPress(TObject *Sender, char &Key);
     void __fastcall ComboBox2KeyPress(TObject *Sender, char &Key);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+    void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
+          TShiftState Shift);
+    void __fastcall Image5Click(TObject *Sender);
 private:	// User declarations
 
     int calculateNodeSpace(int NodeCount);
