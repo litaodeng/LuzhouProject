@@ -5,9 +5,9 @@
 #pragma link "iAngularGauge"
 #include"Unit1.h"
 extern int currentMotorIndex;
-Motor::Motor(TRzPanel* TopCenterPanel){
+Motor::Motor(TRzPanel* panelInFrame){
 
-    panel=new TRzPanel(TopCenterPanel);
+    panel=new TRzPanel(panelInFrame);
     numLabel=new TRzLabel(panel);
     numShow=new TRzLabel(panel);
     nameLabel=new TRzLabel(panel);
@@ -19,7 +19,7 @@ Motor::Motor(TRzPanel* TopCenterPanel){
     dometer= new TiOdometer(panel);
     busSpeedRatioValue=new TRzLabel(panel);
     PID=new TRzLabel(panel);
-    panel->Parent=TopCenterPanel;
+    panel->Parent=Frame;
     numLabel->Parent=panel;
     numShow->Parent=panel;
     nameLabel->Parent=panel;
@@ -147,7 +147,7 @@ Motor::~Motor()
     delete(settingValueShow);
     delete(frequencySpeedRatioValue);
     delete(PID);
-    delete(busSpeedRatioValue
+    delete(busSpeedRatioValue);
     delete(panel);
 
 

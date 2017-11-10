@@ -7,6 +7,7 @@ USEFORM("Unit1.cpp", MainForm);
 USEFORM("ChangeMotorName.cpp", ChangeMotorNameForm);
 USEFORM("PreViewForm.cpp", AdminLogin);
 USEFORM("ModifyPassword.cpp", ModifyPasswordFrame);
+USEFORM("Frame.cpp", Frame2); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

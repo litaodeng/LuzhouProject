@@ -16,6 +16,7 @@
 #include "RzLabel.hpp"
 #include "Unit1.h" 
 #include "iOdometer.hpp"
+#include "Frame.h"
 class Motor
 {
   void __fastcall  ClickedMotor(TObject* sender);
@@ -32,7 +33,7 @@ public:
         TRzLabel *busSpeedRatioValue;
         TRzLabel *PID;
         TiOdometer *dometer;
-	Motor(TRzPanel* TopCenterPanel);
+	Motor(TRzPanel* panelInFrame);
         ~Motor();
     void CreateMotor();
 

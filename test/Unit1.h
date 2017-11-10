@@ -53,13 +53,13 @@
 #include "iSlider.hpp"
 #include "Instruction.cpp"
 #include "RzBorder.hpp"
+#include "Frame.h"
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
 __published:	// IDE-managed Components
         TTimer *Timer2;
         TPanel *Top;
-        TiPipe *iPipe1;
         TiStripChart *iStripChart5;
         TImage *LeftCameraLine;
         TBitBtn *BitBtn1;
@@ -98,7 +98,6 @@ __published:	// IDE-managed Components
         TRzButton *Stop;
         TPopupMenu *ListPopMenu;
         TMenuItem *DeleteConfig;
-        TRzLabel *RunningStatusLabel;
         TRzButton *DeleteSelectedConfig;
     TiLabel *iLabel1;
     TiLabel *Countdown;
@@ -132,6 +131,9 @@ __published:	// IDE-managed Components
     TRzLabel *RzLabel21;
     TRzLabel *RzLabel13;
     TImage *Image5;
+    TFrame2 *Frame;
+    TiPipe *iPipe1;
+    TRzLabel *RunningStatusLabel;
     void __fastcall FormCreate(TObject *Sender);
     void __fastcall Timer2Timer(TObject *Sender);
     void __fastcall Button2Click(TObject *Sender);
@@ -189,7 +191,7 @@ __published:	// IDE-managed Components
     void __fastcall Image5Click(TObject *Sender);
 private:	// User declarations
 
-    int calculateNodeSpace(int NodeCount);
+    double calculateNodeSpace(int NodeCount);
     void  RepaintMotor();
     void  CurrentMotor(int cur);
     void ShowErrorReason(int errorCode);

@@ -43,6 +43,7 @@
 #pragma link "iLinearGauge"
 #pragma link "iSlider"
 #pragma link "RzBorder"
+#pragma link "Frame"
 #pragma resource "*.dfm"
 #define PI 3.1415926
 #define TRANSTATIONRATIO 1
@@ -59,7 +60,7 @@ typedef struct {
 std::deque<byte> receiveQueue;
 std::set<int> aliveMotor;
 int backBeforePositionNumber=0;
-const int maxCountOfMotor=10;
+const int maxCountOfMotor=20;
 const String iniFile="config.ini";
 const String topSection="TopSection";
 const String applicationWidth="ApplicationWidth";
@@ -89,7 +90,6 @@ int x;
 Motor* currentMotor;
 TImage* connectLines[maxCountOfMotor];
 Motor* motors[maxCountOfMotor];
-const int totalSize=10;
 int motorCount=0;
 bool isRunning=false;
 AnsiString currentPath="";
@@ -188,15 +188,16 @@ void __fastcall TMainForm::loadMotorNodeFromIniFile(AnsiString ConfigName){
         }
         delete ini;
     }
+    RepaintMotor();
 }
 //-----------------------------------------------------------------------------
 void __fastcall TMainForm::CreateNode(int index){
-    if(index>=0&&index<totalSize){
-        motors[index]=new Motor(TopCenterPanel);
+    if(index>=0&&index<maxCountOfMotor){
+        motors[index]=new Motor(Frame->PanelInFrame);
         AnsiString s="motor_"+AnsiString(index);
         motors[index]->panel->Name=s;
         connectLines[index]=new TImage(this);
-        connectLines[index]->Parent=TopCenterPanel;
+        connectLines[index]->Parent=Frame->PanelInFrame;
         connectLines[index]->Height=50;
         connectLines[index]->Width=17;
         connectLines[index]->Enabled=true;
@@ -208,10 +209,10 @@ void __fastcall TMainForm::CreateNode(int index){
 }
 
 //---------------------------------------------------------------------------
-int TMainForm::calculateNodeSpace(int NodeCount){
-    //计算间距，要减去每个节点本身的长度
-    int centerWidth=appWidth*(1-persentLeft-persentRight);
-    return (centerWidth-((LeftCameraLine->Width*2)*NodeCount))/(NodeCount+1);
+double TMainForm::calculateNodeSpace(int NodeCount){
+    //计算间距
+    int centerWidth=Frame->Width;
+    return ((double)centerWidth/(NodeCount+1));
 }
 
 //---------------------------------------------------------------------------
@@ -228,7 +229,8 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
         MainControlPanel->DoubleBuffered=true;
         iPipe1->FlowOn=false;
         //启动酒瓶计算的程序：
-        char* cmd="C:/Users/李涛/Desktop/temp/Release/BottleCounting.exe";
+
+        char* cmd=(currentPath+"\\BottleCount\\Release\\BottleCounting.exe").c_str();
         WinExec(cmd,SW_HIDE);
         //system(cmd);
         Init();
@@ -269,9 +271,8 @@ void __fastcall TMainForm::Timer2Timer(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::Button2Click(TObject *Sender)
 {
-        
-  CreateNode(motorCount);
-  RepaintMotor();
+    CreateNode(motorCount);
+    RepaintMotor();
 
 }
 //---------------------------------------------------------------------------
@@ -282,21 +283,28 @@ void TMainForm::CurrentMotor(int i){
 //---------------------------------------------------------------------------
 void  TMainForm::RepaintMotor(){
     if(motorCount>0){
-        int spans=calculateNodeSpace(motorCount);
+        //如果电机数量在8个以内，则不用拖动条显示
+        double spansOfMotos=0;
+        if(motorCount<=7){
+            Frame->PanelInFrame->Width=Frame->Width-10;
+            spansOfMotos=calculateNodeSpace(motorCount);
+        }else{
+            spansOfMotos=calculateNodeSpace(8);
+            Frame->Width=TopCenterPanel->Width-2;
+            Frame->PanelInFrame->Width=spansOfMotos*(motorCount+1);
+            
+        }
         for(int i=0;i<motorCount;i++){
-            if(motors[i]==NULL)
-                 return;
             motors[i]->numShow->Caption=motors[i]->panel->Name;
-            connectLines[i]->Top=iPipe1->Top+iPipe1->Height;
-            connectLines[i]->Left=(i+1)*spans+(i-1)*(LeftCameraLine->Width*2);
+            connectLines[i]->Top=0;
+            connectLines[i]->Left=(i+1)*spansOfMotos-LeftCameraLine->Width;
             //中间newImage的正中心然后减去motor宽带的二分之一 ，将motor[i]定位到连线的中间
             motors[i]->panel->Left=((connectLines[i]->Left)+(connectLines[i]->Width)/2)-(motors[i]->panel->Width)/2;
-            motors[i]->panel->Top=iPipe1->Top+iPipe1->Height+connectLines[i]->Height;
+            motors[i]->panel->Top=connectLines[i]->Height;
             if(i==currentMotorIndex){
                 motors[i]->panel->BorderColor=RGB(22,156,157);
                 motors[i]->panel->BorderInner=fsNone;
                 motors[i]->panel->BorderOuter=fsNone;
-
             }else{
                 motors[i]->panel->BorderColor=clMedGray;
                 motors[i]->panel->BorderInner=fsNone;
@@ -347,6 +355,7 @@ void __fastcall TMainForm::saveToMotorsConfig(AnsiString fileName,bool isDeleteA
             ini->WriteFloat(motorNodeSection,nodePosition+"_"+i+"_"+busSpeedRatioName,motors[i]->busSpeedRatioValue->Caption.ToDouble());
             ini->WriteInteger(motorNodeSection,nodePosition+"_"+i+"_PID",motors[i]->PID->Caption.ToInt());
             if(isDeleteAllMotors){
+                connectLines[i]->Left=-100;
                 motors[i]->~Motor();
                 motors[i]=NULL;
             }
@@ -366,9 +375,6 @@ void __fastcall TMainForm::TopCenterPanel1Resize(TObject *Sender)
     appWidth=MainForm->Width;
     TopCenterPanel->Align=alClient;
     iPipe1->Left=0;
-    iPipe1->Width=TopCenterPanel->Width;
-    //RzPanel2->Left=(TopCenterPanel->Width)/2-RzPanel2->Width;
-    //RzPanel3->Left=(TopCenterPanel->Width)/2;
     TopLeftPanel->Width=MainForm->Width*persentLeft;
     TopRightPanel->Width=MainForm->Width*persentRight;
     LeftCameraLine->Left=40;
@@ -1234,5 +1240,7 @@ void __fastcall TMainForm::Image5Click(TObject *Sender)
     MainForm->Close();    
 }
 //---------------------------------------------------------------------------
+
+
 
 

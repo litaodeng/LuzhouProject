@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 168
-  Top = 126
+  Left = -19
+  Top = 287
   BorderStyle = bsNone
   Caption = 'MainForm'
   ClientHeight = 715
@@ -39,7 +39,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 129
     Width = 1366
-    Height = 343
+    Height = 367
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Top'
@@ -48,7 +48,7 @@ object MainForm: TMainForm
       Left = 0
       Top = 0
       Width = 96
-      Height = 343
+      Height = 367
       Align = alLeft
       BorderOuter = fsNone
       Color = clWindowFrame
@@ -99,10 +99,10 @@ object MainForm: TMainForm
       end
     end
     object TopRightPanel: TRzPanel
-      Left = 1260
+      Left = 1364
       Top = 0
-      Width = 106
-      Height = 343
+      Width = 2
+      Height = 367
       Align = alRight
       BorderOuter = fsFlatRounded
       BorderShadow = clMedGray
@@ -111,8 +111,8 @@ object MainForm: TMainForm
     object TopCenterPanel: TRzPanel
       Left = 96
       Top = 0
-      Width = 1164
-      Height = 343
+      Width = 1268
+      Height = 367
       Align = alClient
       AutoSize = True
       BorderOuter = fsNone
@@ -124,8 +124,8 @@ object MainForm: TMainForm
       OnPaint = TopCenterPanel1Resize
       OnResize = TopCenterPanel1Resize
       DesignSize = (
-        1164
-        343)
+        1268
+        367)
       object LeftCameraLine: TImage
         Left = 32
         Top = 72
@@ -434,31 +434,13 @@ object MainForm: TMainForm
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object iPipe1: TiPipe
-        Left = -285
-        Top = 104
-        Width = 2225
-        Height = 33
-        Anchors = [akLeft, akTop, akRight]
-        AutoFrameRate = True
-        FlowInterval = 50
-        FlowOn = True
-        FlowReverse = False
-        FlowIndicatorStyle = ipfisCircle
-        FlowIndicatorSize = 6
-        FlowIndicatorSpacing = 8
-        FlowIndicatorColor = clRed
-        FlowIndicatorUseTubeColor = True
-        FlowIndicatorHideWhenOff = True
-        TubeColor = clTeal
-      end
       object BitBtn4: TBitBtn
         Left = 432
-        Top = 312
+        Top = 344
         Width = 75
         Height = 25
         Caption = #21024#38500
-        TabOrder = 1
+        TabOrder = 0
         Visible = False
         OnClick = BitBtn4Click
         Glyph.Data = {
@@ -491,11 +473,11 @@ object MainForm: TMainForm
       end
       object BitBtn3: TBitBtn
         Left = 360
-        Top = 312
+        Top = 344
         Width = 75
         Height = 25
         Caption = #28155#21152
-        TabOrder = 2
+        TabOrder = 1
         Visible = False
         OnClick = Button2Click
         Glyph.Data = {
@@ -528,11 +510,11 @@ object MainForm: TMainForm
       end
       object BitBtn2: TBitBtn
         Left = 504
-        Top = 312
+        Top = 344
         Width = 65
         Height = 25
         Caption = #21491#31227
-        TabOrder = 3
+        TabOrder = 2
         Visible = False
         OnClick = BitBtn2Click
         Glyph.Data = {
@@ -562,11 +544,11 @@ object MainForm: TMainForm
       end
       object BitBtn1: TBitBtn
         Left = 304
-        Top = 312
+        Top = 344
         Width = 57
         Height = 25
         Caption = #24038#31227
-        TabOrder = 4
+        TabOrder = 3
         Visible = False
         OnClick = BitBtn1Click
         Glyph.Data = {
@@ -605,7 +587,7 @@ object MainForm: TMainForm
         BorderColor = clActiveCaption
         BorderWidth = 2
         Color = clGrayText
-        TabOrder = 5
+        TabOrder = 4
         Visible = False
         object RzLabel1: TRzLabel
           Left = 8
@@ -709,9 +691,9 @@ object MainForm: TMainForm
       end
       object ChangeName: TRzButton
         Left = 568
-        Top = 312
+        Top = 344
         Caption = #20462#25913#21517#31216
-        TabOrder = 6
+        TabOrder = 5
         Visible = False
         OnClick = ChangeNameClick
       end
@@ -740,25 +722,25 @@ object MainForm: TMainForm
       end
       object RzButton2: TRzButton
         Left = 640
-        Top = 312
+        Top = 344
         Caption = #35835#21462#37197#32622
-        TabOrder = 8
+        TabOrder = 7
         Visible = False
         OnClick = RzButton2Click
       end
       object SaveConfigButton: TRzButton
         Left = 712
-        Top = 312
+        Top = 344
         Caption = #26032#24314#37197#32622
-        TabOrder = 9
+        TabOrder = 8
         Visible = False
         OnClick = SaveConfigButtonClick
       end
       object DeleteSelectedConfig: TRzButton
         Left = 776
-        Top = 312
+        Top = 344
         Caption = #21024#38500#37197#32622
-        TabOrder = 10
+        TabOrder = 9
         Visible = False
         OnClick = DeleteSelectedConfigClick
       end
@@ -797,7 +779,7 @@ object MainForm: TMainForm
         Font.Style = [fsBold]
         ItemHeight = 16
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 11
         OnKeyPress = ComboBox1KeyPress
       end
       object ComboBox2: TComboBox
@@ -813,8 +795,36 @@ object MainForm: TMainForm
         Font.Style = [fsBold]
         ItemHeight = 16
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 12
         OnKeyPress = ComboBox2KeyPress
+      end
+      inline Frame: TFrame2
+        Left = 0
+        Top = 120
+        Width = 1273
+        Height = 223
+        TabOrder = 13
+        inherited PanelInFrame: TRzPanel
+          Left = -8
+        end
+      end
+      object iPipe1: TiPipe
+        Left = -752
+        Top = 88
+        Width = 2028
+        Height = 33
+        Anchors = [akLeft, akTop, akRight]
+        AutoFrameRate = True
+        FlowInterval = 50
+        FlowOn = True
+        FlowReverse = False
+        FlowIndicatorStyle = ipfisCircle
+        FlowIndicatorSize = 6
+        FlowIndicatorSpacing = 8
+        FlowIndicatorColor = clRed
+        FlowIndicatorUseTubeColor = True
+        FlowIndicatorHideWhenOff = True
+        TubeColor = clTeal
       end
     end
   end
@@ -827,21 +837,6 @@ object MainForm: TMainForm
     BorderOuter = fsNone
     Color = clSilver
     TabOrder = 1
-    object RunningStatusLabel: TRzLabel
-      Left = 304
-      Top = 64
-      Width = 169
-      Height = 33
-      AutoSize = False
-      Caption = #20572#27490#36816#34892
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clInactiveBorder
-      Font.Height = -24
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Visible = False
-    end
     object RzLEDDisplay1: TRzLEDDisplay
       Left = 1080
       Top = 32
@@ -4397,6 +4392,21 @@ object MainForm: TMainForm
         AE81E0C10000000049454E44AE426082}
       OnClick = Image5Click
     end
+    object RunningStatusLabel: TRzLabel
+      Left = 304
+      Top = 64
+      Width = 169
+      Height = 33
+      AutoSize = False
+      Caption = #20572#27490#36816#34892
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clInactiveBorder
+      Font.Height = -24
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Visible = False
+    end
     object RzPanel2: TRzPanel
       Left = 480
       Top = 56
@@ -4500,9 +4510,9 @@ object MainForm: TMainForm
   end
   object MainControlPanel: TRzPanel
     Left = 0
-    Top = 472
+    Top = 496
     Width = 1366
-    Height = 243
+    Height = 219
     Align = alBottom
     BorderOuter = fsNone
     Color = clWindowFrame
@@ -4613,7 +4623,7 @@ object MainForm: TMainForm
       Left = 0
       Top = 0
       Width = 633
-      Height = 243
+      Height = 219
       AutoFrameRate = True
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWhite
@@ -4844,8 +4854,8 @@ object MainForm: TMainForm
   end
   object Timer2: TTimer
     OnTimer = Timer2Timer
-    Left = 992
-    Top = 232
+    Left = 1024
+    Top = 144
   end
   object ClientSocket1: TClientSocket
     Active = False
@@ -4886,13 +4896,13 @@ object MainForm: TMainForm
   object CountdownTimer: TTimer
     Enabled = False
     OnTimer = CountdownTimerTimer
-    Left = 960
-    Top = 248
+    Left = 992
+    Top = 144
   end
   object InCrementSpeedTimer: TTimer
     Enabled = False
     OnTimer = InCrementSpeedTimerTimer
     Left = 960
-    Top = 216
+    Top = 144
   end
 end
